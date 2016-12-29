@@ -13,8 +13,8 @@ var view_dr = require('./routes/view_dr');
 var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
-  password : 'cat@03$01$98',
-  database : 'DR_list'
+  password : '******',
+  database : 'DR_list' //name of the local database 
 	});
 
 connection.connect(function(err) { 
