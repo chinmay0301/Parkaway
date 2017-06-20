@@ -30,6 +30,10 @@ app.config(['$routeProvider', function($routeProvider){
           templateUrl: 'partials/locker.html',
           controller: 'LockerControl'
         })
+        .when('/map_seg', {
+          templateUrl: 'partials/map_seg.html',
+          controller: 'MapSegController'
+        })
         .otherwise({
             redirectTo: '/'
         });
@@ -96,6 +100,8 @@ app.controller('UserControl', function($scope, $resource, $window, $location){
     
     
 });      
+
+
 
 app.controller('LockerControl', function($scope, $resource, $window, $location){
    var list = $resource('/api/insert_user/locker_status');
