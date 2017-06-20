@@ -1,18 +1,31 @@
 
-<h3> Department Rank </h3>
+<h3> Bill Generating page </h3>
 
 <form>
     <div class = "form-group">
-        <label> Roll Number ( in capitals) </label>		
-        <input name = "roll_num" ng-model = "visitor.roll_num" class = "form-control"></input>
+        <label> Car Number </label>		
+        <input name = "car_num" ng-model = "visitor.car_num" class = "form-control"></input>
     </div>
-
+    
     <div class = "form-group">
-    <input class = "btn btn-default" type="button" value="view" ng-click = "submit(visitor)"></input>
+        <label> Unlocker Id </label>		
+        <input name = "id_unlocker" ng-model = "visitor.id_unlocker" class = "form-control"></input>
+    </div>
+    
+    <div class = "form-group">
+    <input class = "btn btn-default" type="button" value="Calculate" ng-click = "submit(visitor)"></input>
     </div>
 </form>
 
 <div ng-show = show >
-Hey, your department rank is {{user.rank}}. <br> {{user.size}} students out of 133 have filled the database till now. <br> Hope this helps. 
+Fine for the parking misconduct is : {{user.fine}}. <br>
 
+<input class = "btn btn-default" type="button" value="Paid" ng-click = "paid(visitor)"></input>
+</div>
+<div ng-show = show_1> 
+Car Number : {{user.car_num}} <br>
+Status:  {{user.status}} <br>
+Lock Id: {{user.id_lock}} <br>        
+Unlocker Id: {{user.unlocker}} <br>    
+Time of Locking: {{user.time}} <br>    
 </div>

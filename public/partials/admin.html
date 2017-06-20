@@ -1,0 +1,81 @@
+
+
+  <!DOCTYPE html>
+<html ng-app="Parkaway">
+<head>
+<meta charset="ISO-8859-1">
+<title>Admin Interface</title><!-- 
+<link rel="stylesheet" href="map.css"> -->
+
+<!-- <script
+    src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>
+<script
+    src="http://maps.googleapis.com/maps/api/js?sensor=false&language=en"></script> -->
+ <!-- ! <script type="text/javascript" src="map.js"></script>  -->
+</head>
+<body>
+    <!-- <div class="float right">right</div> -->
+<h3> Admin Interface </h3>
+ <input class = "btn btn-default" type="button" name = "button" value="show map" ng-click = "toggle()"></input>
+ <input class = "btn btn-default" type="button" name = "button" value="Locker Table" ng-click = "locker_redirect()"></input>
+ 
+<div ng-controller="MapController">
+    <div ng-show = map_show >
+    <div id="map"></div>
+    <div id="repeat" ng-repeat="marker in markers | orderBy : 'title'">
+         <a id="country_container" href="#" ng-click="openInfoWindow($event, marker)">
+         <label id="names" >{{marker.title}}</label></a>
+    </div>
+</div>
+</div>
+<div>
+<form>
+    <div class = "form-group">
+        <label> Emergency Master Key ( Enter lock to open) </label>		
+        <input name = "lock_id" ng-model = "master.lock_id" class = "form-control"></input>
+    </div>
+<div class = "form-group">
+    <input class = "btn btn-default" type="button" name = "button" value="save" ng-click = "submit(master)"></input>	
+    </div>
+</form>    
+<div ng-show = lock>
+Unlocked the lock with number {{master.lock_id}}
+</div>
+
+<div>
+    <table style = "width:100%">
+      <tr id ="header">
+       <td> <b>Car Number</b></td>
+       <td> <b>Mobile Number</b></td>
+       <td> <b>Hours</b></td>
+       <td> <b>Minutes</b></td>
+       <td> <b>Assigned</b></td>
+       <td> <b>Unlocker Id</b></td>
+      </tr>
+     <tr ng-repeat="user in list">
+       <td> {{user.car_num}}</td>
+       <td> {{user.phone_num}}</td>
+       <td> {{user.hours}}</td>
+       <td> {{user.minutes}}</td>
+       <td> {{user.assigned}}</td>
+       <td> {{user.unlocker_id}}</td>
+     </tr>
+   </table>
+      </div>
+<hr> <br>
+<form>
+    <div class = "form-group">
+        <label> Unlocker Id ( Enter Unlocker Id) </label>   
+        <input name = "unlocker_id" ng-model = "master.unlocker_id" class = "form-control"></input>
+    </div>
+    <div class = "form-group">
+        <label> Phone number of requesting user ( Enter phone number) </label>   
+        <input name = "phone_num" ng-model = "master.phone_num" class = "form-control"></input>
+    </div>
+    
+<div class = "form-group">
+    <input class = "btn btn-default" type="button" name = "button" value="submit" ng-click = "submit_sms(master)"></input>  
+    </div>
+</form>   
+</body>
+</html>

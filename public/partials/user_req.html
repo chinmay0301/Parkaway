@@ -1,0 +1,31 @@
+<h3> Parkaway - User interface</h3>
+<!--
+<ul>
+<li> Enter your Roll-num and cpi only once, as your next attempt for a given roll number wont be recorded </li>
+<li> Please enter only your details, for everyones benefit </li>
+<li> The aim behind making this portal crowd sourced is just to find your current DRs, take it in good spirit, and dont create boundaries on basis of this. </li>
+<li>If you have already entered your details before, click the view DR button </li>
+</ul>
+-->
+
+<br><br><br><br>
+
+
+<form>
+    <div class = "form-group">
+        <label> Car Number ( in capitals) </label>		
+        <input name = "car_num" ng-model = "visitor.car_num" class = "form-control"></input>
+    </div>
+    <div class = "form-group">
+        <label> Mobile Number  </label>      
+        <input name = "phone_num" ng-model = "visitor.phone_num" class = "form-control"></input>
+    </div>
+    
+    <div class = "form-group">
+    <input class = "btn btn-default" type="button" name = "button" value="save" ng-click = "submit(visitor)"></input>	
+    </div>
+</form>
+
+<div ng-show = show>
+ Your entered details are {{visitor.car_num}} and {{visitor.phone_num}}. <br>  You will receieve a message that has details of the person who will come to open your lock. Call the admin if he takes more than 15 mins.
+</div> 

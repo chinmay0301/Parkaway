@@ -4,39 +4,59 @@ var mysql = require('mysql');
 var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
-  password : '*******',
+  password : 'cat@03$01$98',
   database : 'DR_list'
 	});
-
 router.get('/:test', function(req,res) {
-	var roll_num = req.params.test;
-    var rank;
-    var size;
-    var cpi;
+	var car_num = req.params.test;
+    var id_lock;
     var obj = {};
-    connection.query('SELECT * from dr_table where roll_no =' + connection.escape(roll_num), function(err,row,fields){
-     cpi = row[0].cpi;
-     console.log('cpi of the entered roll num is ' + cpi);
-  
-	connection.query('SELECT * FROM dr_table', function(err,rows,fields){
-        size = rows.length;
-        console.log(size);
-	});
-    connection.query('SELECT * FROM dr_table where cpi >= ' +connection.escape(cpi) , function(err,rowss,columns){
-    	if(!err)
-    	{
-          rank = rowss.length;
-          console.log(rowss);
-    	}
-    
-    obj = {
-		roll_num : roll_num,
-	    rank: rank,	   
-	    size: size 
-	}
+    var fine = 0;
+    var paid; 
+    connection.query('SELECT * from parkaway where car_num =' + connection.escape(car_num), function(err,row,fields){
+     
+     console.log(row[0]);
+     id_lock = row[0].lock_id;
+     var timestamp2 = new Date();
+     console.log(timestamp2.getHours());
+     console.log(timestamp2.getMinutes());
+     if (row[0].paid==false)
+     {
+
+     fine = (timestamp2.getHours()- row[0].hours)*60 + (timestamp2.getMinutes()-row[0].minutes); 
+     connection.query('UPDATE parkaway SET fine =' + connection.escape(fine) +' ' + 'WHERE car_num =' +connection.escape(car_num),function(errr,rowss,fieldss){
+      if(!errr) {
+      console.log(rowss + " updated fine");
+      }
+      
+     });
+     console.log('paid = false wala fine' + fine);
+     }
+     
+     connection.query('SELECT * from parkaway where car_num =' + connection.escape(car_num), function(err,row,fields){
+      
+     console.log('fine is ' + fine);
+     obj = {
+        car_num: car_num,
+        fine: row[0].fine,    // update query is not working 
+        id_lock: id_lock 
+        }
     res.json(obj);
     console.log(obj);
-  });
+    });  
+	// connection.query('SELECT * FROM dr_table', function(err,rows,fields){
+ //        size = rows.length;
+ //        console.log(size);
+	// });
+ //    connection.query('SELECT * FROM dr_table where cpi >= ' +connection.escape(cpi) , function(err,rowss,columns){
+ //    	if(!err)
+ //    	{
+ //          rank = rowss.length;
+ //          console.log(rowss);
+ //    	}
+    
+    
+ //  });
    
 
 });

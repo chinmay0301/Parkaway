@@ -1,0 +1,28 @@
+
+<h3> Managers Locker/Unlocker Status </h3>
+<br> 
+
+<div>
+    <table style = "width:100%">
+      <tr id ="header">
+       <td> <b>Manager Id</b></td>
+       <td> <b>Name</b></td>
+       <td> <b>Phone</b></td>
+       <td> <b>Lock Id</b></td>
+       <td> <b>Locker</b></td>
+       <td> <b>Unlocker</b></td>
+       <td> <b>Locks Handled</b></td>
+      </tr>
+     <tr ng-repeat="user in list">
+       <td> {{user.id}}</td>
+       <td> {{user.name}}</td>
+       <td> {{user.phone}}</td>
+       <td> {{user.lock_id}}</td>
+       <td> {{user.locker}}</td>
+       <td> {{user.unlocker}}</td>
+       <td> {{user.locks_handled}}</td>
+     </tr>
+   </table>
+      </div>
+
+<input class = "btn btn-default" type="button" name = "button" value="Back" ng-click = "toggle()"></input>      

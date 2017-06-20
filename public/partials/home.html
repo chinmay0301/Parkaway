@@ -1,32 +1,42 @@
-<h3> DR List Generator </h3>
-
+<h3> Parkaway - Manager interface</h3>
+<!--
 <ul>
 <li> Enter your Roll-num and cpi only once, as your next attempt for a given roll number wont be recorded </li>
 <li> Please enter only your details, for everyones benefit </li>
 <li> The aim behind making this portal crowd sourced is just to find your current DRs, take it in good spirit, and dont create boundaries on basis of this. </li>
 <li>If you have already entered your details before, click the view DR button </li>
 </ul>
+-->
 
 <br><br><br><br>
 
+
 <form>
     <div class = "form-group">
-        <label> Roll Number ( in capitals) </label>		
-        <input name = "roll_num" ng-model = "visitor.roll_num" class = "form-control"></input>
+        <label> Car Number ( in capitals) </label>		
+        <input name = "car_num" ng-model = "visitor.car_num" class = "form-control"></input>
     </div>
     <div class = "form-group">
-    	<label> CPI (upto 2 decimal places only) </label>
-        <input name = "cpi" ng-model = "visitor.cpi" class = "form-control"></input>
+    	<label> Lock Id</label>
+        <input name = "id_lock" ng-model = "visitor.id_lock" class = "form-control"></input>
     </div> 	
+    <div class = "form-group">
+        <label> Locker's Id</label>
+        <input name = "id_locker" ng-model = "visitor.id_locker" class = "form-control"></input>
+    </div> 
+     <div>
+        <input type = "file" file-model = "myFile"/>
+        <input class = "btn btn-default" type="button" name="button" value="Upload" ng-click = "uploadFile()"></input>  Upload an image of the scene if you think controversies may be created later<br> 
+    </div>
+    <br> <br>
     <div class = "form-group">
     <input class = "btn btn-default" type="button" name = "button" value="save" ng-click = "submit(visitor)"></input>	
     </div>
 </form>
 
 <div ng-show = show>
- Your entered details are {{user.roll_num}} and {{user.cpi}}
-
+ Your entered details are {{user.car_num}} and {{user.id_lock}}. Your locker id is {{user.id_locker}}. The lock being used is {{user.available}} <br>
 </div> 
 <div >
-<input class = "btn btn-primary" type="button" value="View your DR" ng-click = "view(visitor)"></input>	
- </div>
+<input class = "btn btn-primary" type="button" value="Generate Bill" ng-click = "view(visitor)"></input>	
+ </div> 
